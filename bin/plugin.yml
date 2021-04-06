@@ -1,0 +1,10 @@
+name: Percentage
+author: Dudumaax
+main: dmax.percentage.Main
+version: 0.1
+api-version: 1.13
+description: Utils for percentage items
+commands:
+  caixa:
+  giveitemexclusivo:
+  presents:
