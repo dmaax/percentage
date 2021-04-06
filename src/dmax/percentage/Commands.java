@@ -393,7 +393,6 @@ public class Commands implements CommandExecutor {
 		}
 
 		// Antes de sortear um item, vamos dropar um item exclusivo
-
 		// Se for maior ou igual a 11, sorteia novamenta entre os 3 itens melhores
 
 //		if (choice >= 100 - Files.caixasConfig.getDouble("c" + argint + ".i1-chance")) {
