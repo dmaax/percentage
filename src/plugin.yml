@@ -7,4 +7,5 @@ description: Utils for percentage items
 commands:
   caixa:
   giveitemexclusivo:
-  presents:
+  setpresents:
+  removepresents:

@@ -15,7 +15,8 @@ public class Main extends JavaPlugin {
 		this.saveConfig();
 		getCommand("caixa").setExecutor(new Commands());
 		getCommand("giveitemexclusivo").setExecutor(new Commands());
-		getCommand("presents").setExecutor(new Commands());
+		getCommand("setpresents").setExecutor(new Commands());
+		getCommand("removepresents").setExecutor(new Commands());
 	}
 
 	@Override

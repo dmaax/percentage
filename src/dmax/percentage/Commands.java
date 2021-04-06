@@ -16,6 +16,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import net.minecraft.server.v1_16_R3.CommandException;
+
 public class Commands implements CommandExecutor {
 
 	ItemManager im = new ItemManager();
@@ -51,18 +53,75 @@ public class Commands implements CommandExecutor {
 					player.sendMessage("§cSem permissão.");
 					return true;
 				}
-				if(args.length != 1) {
-					player.sendMessage("§cUso correto: /presents numerodepresentes");
+				if(args.length != 2) {
+					player.sendMessage("§7[§5Percentage§7] §5Esse comando seta os presentes automaticamente, exceção dos itens exclusivos.");
+					player.sendMessage("§7[§5Percentage§7] §7Exemplo para setar do numero 10 até o numero 32:");
+					player.sendMessage("§7[§5Percentage§7] §c/presents 10 32");
 					return true;
 				}
 				Integer numero = Integer.parseInt(args[0]);
-				for(int i=0; i < numero; i++) {
+				Integer numero2 = Integer.parseInt(args[1]);
+				while(numero <= numero2) {
 					Random rand = new Random();
 					int aleatorio = rand.nextInt(4) + 1;
-					player.sendMessage("§aComando " + numero + " Random: " + aleatorio);
-					//Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lps reward setcustom " + numero + " caixa " + aleatorio + "%player%");
+					player.performCommand("lps reward setcustom " + numero + " caixa " + aleatorio + " %player%");
+					numero++;
 				}
 				player.sendMessage("§6Todos os presentes foram setados!");
+				return true;
+			}
+			sender.sendMessage("§cComando ingame apenas.");
+			return true;
+		}
+		
+		if(label.equalsIgnoreCase("setpresents")) {
+			if(sender instanceof Player) {
+				Player player = (Player) sender;
+				if(!player.hasPermission("percentage.presents")) {
+					player.sendMessage("§cSem permissão.");
+					return true;
+				}
+				if(args.length != 2) {
+					player.sendMessage("§7[§5Percentage§7] §5Esse comando seta os presentes automaticamente, exceção dos itens exclusivos.");
+					player.sendMessage("§7[§5Percentage§7] §7Exemplo para setar do numero 10 até o numero 32:");
+					player.sendMessage("§7[§5Percentage§7] §c/setpresents 10 32");
+					return true;
+				}
+				Integer numero = Integer.parseInt(args[0]);
+				Integer numero2 = Integer.parseInt(args[1]);
+				while(numero <= numero2) {
+					Random rand = new Random();
+					int aleatorio = rand.nextInt(4) + 1;
+					player.performCommand("lps reward setcustom " + numero + " caixa " + aleatorio + " %player%");
+					numero++;
+				}
+				player.sendMessage("§6Todos os presentes foram setados!");
+				return true;
+			}
+			sender.sendMessage("§cComando ingame apenas.");
+			return true;
+		}
+		
+		if(label.equalsIgnoreCase("removepresents")) {
+			if(sender instanceof Player) {
+				Player player = (Player) sender;
+				if(!player.hasPermission("percentage.presents")) {
+					player.sendMessage("§cSem permissão.");
+					return true;
+				}
+				if(args.length != 2) {
+					player.sendMessage("§7[§5Percentage§7] §5Esse comando remove os presentes automaticamente.");
+					player.sendMessage("§7[§5Percentage§7] §7Exemplo para remove do numero 1 até o numero 50:");
+					player.sendMessage("§7[§5Percentage§7] §c/removepresents 1 50");
+					return true;
+				}
+				Integer numero = Integer.parseInt(args[0]);
+				Integer numero2 = Integer.parseInt(args[1]);
+				while(numero <= numero2) {
+					player.performCommand("lps remove " + numero);
+					numero++;
+				}
+				player.sendMessage("§6Todos os presentes foram removidos!");
 				return true;
 			}
 			sender.sendMessage("§cComando ingame apenas.");
